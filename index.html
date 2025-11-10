@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>MLP ERP SOLUTIONS SRL — Arhitectură ERP, integrare & servicii tehnice</title>
+  <meta name="description" content="MLP ERP SOLUTIONS SRL: proiectare de sisteme, integrare ERP, automatizări de procese, analytics și suport. București." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <style>
+    :root{
+      --bg:#0E0F12;
+      --bg-soft:#14161B;
+      --card:#1B1E25;
+      --muted:#9AA3AF;
+      --text:#E8EDF2;
+      --brand:#6BB4FF;
+      --brand-2:#9D7FFF;
+      --accent:#2A2F3A;
+      --focus:#B6E0FE;
+      --success:#32D583;
+      --danger:#F97066;
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(107,180,255,.12), transparent 60%),
+                  radial-gradient(900px 500px at -10% 10%, rgba(157,127,255,.08), transparent 60%),
+                  var(--bg);
+      color:var(--text); line-height:1.6;
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+      outline:3px solid var(--focus); outline-offset:2px; border-radius:10px;
+    }
+
+    /* NAV */
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(20,22,27,.9), rgba(20,22,27,.75)); border-bottom:1px solid #242833}
+    .container{max-width:1160px; margin:0 auto; padding:0 20px}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; height:68px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.5px}
+    .dot{width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand-2))}
+    .nav-links{display:flex; gap:18px}
+    .nav-links a{color:var(--text); opacity:.85; padding:10px 12px; border-radius:10px}
+    .nav-links a:hover{background:var(--accent)}
+    .cta{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0C1117; border:none; padding:10px 16px; border-radius:12px; font-weight:700; box-shadow:var(--shadow); cursor:pointer}
+    .cta:hover{transform:translateY(-1px)}
+    .ghost{background:transparent; border:1px solid #2a2f3a; color:var(--text)}
+
+    /* HERO */
+    .hero{
+      padding:72px 0 40px;
+      background:
+        linear-gradient(180deg, rgba(26,29,36,.5), rgba(26,29,36,0) 40%),
+        url('https://images.unsplash.com/photo-1551281044-8f67b09079fb?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      border-bottom:1px solid #1e222d;
+    }
+    .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center}
+    .badge{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:rgba(107,180,255,.14); color:#E6F0FF; font-size:12px; letter-spacing:.3px}
+    h1{font-size:48px; line-height:1.1; margin:14px 0 12px}
+    .lead{font-size:18px; color:#D5DBE7; max-width:640px}
+    .actions{display:flex; gap:12px; margin-top:22px}
+    .hero-card{background:rgba(20,22,27,.92); border:1px solid #2a2f3a; border-radius:20px; padding:22px; box-shadow:var(--shadow)}
+    .hero-card img{width:100%; border-radius:14px}
+    .tiny{font-size:12px; color:var(--muted)}
+
+    /* SECTION */
+    section{padding:72px 0}
+    .section-head{margin-bottom:22px}
+    .eyebrow{color:var(--brand); font-weight:700; letter-spacing:.5px; text-transform:uppercase; font-size:12px}
+    .title{font-size:32px; margin:8px 0 10px}
+    .subtitle{color:#C8D0DB; max-width:860px}
+
+    /* ABOUT */
+    .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px}
+    .card{background:var(--card); border:1px solid #2a2f3a; border-radius:18px; padding:22px; box-shadow:var(--shadow)}
+    .list{display:grid; gap:12px; padding-left:18px}
+    .list li{color:#DDE4EE}
+
+    /* SERVICES */
+    .services-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+    .service{position:relative; overflow:hidden}
+    .service .tag{position:absolute; top:14px; right:14px; background:#0F1320; border:1px solid #283044; color:#CFE4FF; padding:4px 10px; border-radius:999px; font-size:12px}
+    .service h3{margin-top:8px}
+    .service p{color:#C8D0DB}
+    .service a{display:inline-flex; align-items:center; gap:6px; margin-top:10px}
+    .service a svg{width:16px; height:16px}
+
+    /* BENEFITS */
+    .benefits{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .benefit h3{margin:8px 0}
+    .benefit p{color:#C8D0DB}
+
+    /* PROCESS */
+    .process{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .step{position:relative; padding:22px; border-radius:18px; border:1px dashed #2a2f3a; background:linear-gradient(180deg,#151922,#111418)}
+    .step:after{content:"➜"; position:absolute; right:-16px; top:50%; transform:translateY(-50%); font-size:24px; color:#2d3342}
+    .step:last-child:after{display:none}
+    .step h4{margin:6px 0}
+
+    /* HIGHLIGHT */
+    .highlight{display:grid; grid-template-columns:1.2fr .8fr; gap:22px; align-items:center}
+    .highlight .figure{min-height:260px; border-radius:18px; background:url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1400&auto=format&fit=crop') center/cover; border:1px solid #2a2f3a}
+
+    /* CONTACT */
+    .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+    .form-btn{display:inline-flex; gap:10px; align-items:center}
+
+    /* FOOTER */
+    footer{border-top:1px solid #1f2330; background:#0D1016; padding:32px 0 60px; color:#9AA3AF}
+    .foot{display:flex; flex-wrap:wrap; gap:22px; justify-content:space-between; align-items:center}
+
+    /* MODALS */
+    .modal-backdrop{position:fixed; inset:0; background:rgba(3,7,18,.7); display:none; align-items:center; justify-content:center; z-index:80}
+    .modal{width:min(680px,92vw); background:var(--bg-soft); border:1px solid #2a2f3a; border-radius:18px; padding:22px; box-shadow:var(--shadow)}
+    .modal header{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .close{background:#131720; color:#DCE3EE; border:1px solid #2a2f3a; border-radius:10px; padding:8px 10px; cursor:pointer}
+    form label{display:block; font-weight:600; margin-top:12px}
+    input[type="text"], input[type="email"], textarea{
+      width:100%; margin-top:8px; background:#0F1320; color:var(--text); border:1px solid #2a2f3a; border-radius:12px; padding:12px 14px;
+    }
+    textarea{min-height:120px; resize:vertical}
+    .helper{font-size:12px; color:#9AA3AF}
+    .inline{display:flex; gap:12px}
+    .inline > div{flex:1}
+
+    .notice{border-left:4px solid var(--brand); background:#0F1522; padding:12px 14px; border-radius:12px; color:#CFE4FF}
+    .error-box{display:none; margin-top:10px; border-left:4px solid var(--danger); background:#2A1212; color:#FFD6D2; padding:12px 14px; border-radius:12px}
+    .error-box ul{margin:6px 0 0 18px}
+    .ok-box{display:flex; align-items:center; gap:8px; border-left:4px solid var(--success); background:#0E1A14; color:#CFF6E2; padding:12px 14px; border-radius:12px}
+
+    @media (max-width: 960px){
+      .hero-grid, .about-grid, .services-grid, .benefits, .process, .highlight, .contact-grid{grid-template-columns:1fr}
+      .step:after{display:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav" aria-label="Navigație principală">
+    <div class="container nav-inner">
+      <div class="brand" aria-label="MLP ERP SOLUTIONS SRL logo">
+        <span class="dot" aria-hidden="true"></span>
+        <span>MLP ERP SOLUTIONS</span>
+      </div>
+
+      <div class="nav-links" role="menubar" aria-label="Legături de secțiuni">
+        <a role="menuitem" href="#acasa">Acasă</a>
+        <a role="menuitem" href="#despre">Cine suntem</a>
+        <a role="menuitem" href="#servicii">Soluții</a>
+        <a role="menuitem" href="#de-ce-noi">Avantaj</a>
+        <a role="menuitem" href="#proces">Proces</a>
+        <a role="menuitem" href="#contact">Contact</a>
+      </div>
+
+      <button class="cta" id="openContact" aria-haspopup="dialog" aria-controls="contactModal">Scrie-ne</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="acasa" class="hero" role="banner">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12l7-9 7 9-7 9-7-9z"/></svg>
+          Platforme ERP orchestrate
+        </span>
+        <h1>Consultanță tehnică pentru aplicația ta ERP & procesele cheie</h1>
+        <p class="lead">
+          MLP ERP SOLUTIONS SRL — arhitectăm, proiectăm și integrăm sisteme
+          <strong>ERP, WMS, CRM și BI</strong> cu accent pe interoperabilitate, securitate și livrare rapidă.
+        </p>
+        <div class="actions">
+          <a class="cta" href="#servicii" aria-label="Vezi soluțiile">Vezi soluțiile</a>
+          <button class="cta ghost" id="openContact2" aria-haspopup="dialog" aria-controls="contactModal">Solicită o discuție</button>
+        </div>
+        <p class="tiny">Conținut fără cookie-uri, fără trackere.</p>
+      </div>
+
+      <aside class="hero-card" aria-label="Prezentare">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop" alt="Consultant IT în fața unui dashboard ERP" />
+        <div class="tiny" style="margin-top:10px">
+          „Un ERP bun începe cu un design bun de proces.” 
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="despre" aria-labelledby="about-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Dincolo de integrări</div>
+        <h2 id="about-title" class="title">Cine este MLP ERP SOLUTIONS SRL</h2>
+        <p class="subtitle">
+          Studio tehnic pentru proiectarea sistemelor informatice și servicii conexe. Conectăm aplicațiile critice (ERP, e-commerce, POS, EDI).
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <article class="card">
+          <h3>Scurt profil</h3>
+          <p>
+            De peste 8 ani facilităm decizii bazate pe date. Proiectăm arhitecturi cloud-first, automatizăm schimbul de date prin API-uri
+            și standardizăm master-data pentru acuratețe financiară. Abordarea noastră este „process-centric”.
+          </p>
+          <ul class="list">
+            <li>Arhitectură aplicații, integrare și guvernanță date.</li>
+            <li>Livrare incrementală, KPI clari, demo-uri bilunare.</li>
+            <li>Documentație tehnică + training echipă.</li>
+            <li>Suport post-go-live cu SLA și monitorizare.</li>
+          </ul>
+        </article>
+
+        <aside class="card">
+          <h3>Etică, calitate, securitate</h3>
+          <p>
+            Separare de medii, revizii de cod, criptare end-to-end. Nu colectăm date personale în afara celor necesare
+            pentru răspuns. Fără câmp de telefon în formular — conform ghidurilor Apple.
+          </p>
+          <div class="notice" role="note">
+            Operăm din București, remote-first cu acces controlat și audit trail.
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="servicii" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Soluții care aduc claritate</div>
+        <h2 id="services-title" class="title">Ce livrăm efectiv</h2>
+        <p class="subtitle">Trei pachete concrete pentru a reduce timpii morți și costurile recurente.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="card service">
+          <div class="tag">Blueprint ERP</div>
+          <h3>Arhitectură & proiectare</h3>
+          <p>Cartografiem procesele, definim modelul de date, interfețele și politicile de securitate. Livrează diagrame și cerințe implementabile.</p>
+          <p>Beneficiu: risc redus de lock-in și interoperabilitate pe termen lung.</p>
+          <a href="#de-ce-noi">Află de ce noi
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="card service">
+          <div class="tag">Go-Live Lin</div>
+          <h3>Integrare ERP + automatizare</h3>
+          <p>Conectori între ERP, WMS, e-commerce și BI. Automatizăm importuri, reconciliere și notificări.</p>
+          <p>Beneficiu: timp de operare cu 30–50% mai mic și trasabilitate end-to-end.</p>
+          <a href="#proces">Vezi procesul
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="card service">
+          <div class="tag">Insights</div>
+          <h3>Analytics & guvernanță date</h3>
+          <p>Modele semantice, rapoarte executive și alerte operaționale. Politici de calitate pentru un „single source of truth”.</p>
+          <p>Beneficiu: decizii rapide și KPI comparabili între departamente.</p>
+          <a href="#contact">Scrie-ne
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="de-ce-noi" aria-labelledby="why-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Avantajul MLP</div>
+        <h2 id="why-title" class="title">De ce merită să lucrezi cu noi</h2>
+        <p class="subtitle">Trei diferențiatori clari — observați în proiecte reale — care țin de modul nostru de lucru.</p>
+      </div>
+
+      <div class="benefits">
+        <article class="card benefit">
+          <h3>Design ghidat de indicatori</h3>
+          <p>Stabilim KPI de business și aliniem arhitectura la rezultate. Urmărim progresul în demo-uri bilunare.</p>
+        </article>
+        <article class="card benefit">
+          <h3>Integrare „vendor-agnostic”</h3>
+          <p>Selectăm platforme pe baza criteriilor tale: cost total, extensibilitate, comunitate, roadmap.</p>
+        </article>
+        <article class="card benefit">
+          <h3>Calitate verificabilă</h3>
+          <p>Scheme, test-cases, documentație utilizator și checklist de acceptanță. Suport post-implementare inclus.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="proces" aria-labelledby="proc-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">De la idee la rezultate</div>
+        <h2 id="proc-title" class="title">Cum lucrăm — 3 etape</h2>
+        <p class="subtitle">Pași transparenți, contractabili separat.</p>
+      </div>
+
+      <div class="process">
+        <article class="step">
+          <h4>01 · Cartografiere & blueprint</h4>
+          <p>Interviuri, inventar aplicații, diagrame BPMN, model de date, backlog inițial cu efort și riscuri.</p>
+        </article>
+        <article class="step">
+          <h4>02 · Implementare incrementală</h4>
+          <p>Sprinturi de 2 săpt., livrăm conectori/automatizări/rapoarte. Criterii de acceptanță + QA continuu.</p>
+        </article>
+        <article class="step">
+          <h4>03 · Go-live & operațiuni</h4>
+          <p>Migrare, training, monitorizare, SLA & runbooks. Optimizări după feedback din producție.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section aria-labelledby="mission-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Direcția noastră</div>
+        <h2 id="mission-title" class="title">Misiune & obiective</h2>
+        <p class="subtitle">Transformăm sisteme disparate în platforme coerente cu proprietari clari de date și decizii auditate.</p>
+      </div>
+
+      <div class="highlight">
+        <div class="card">
+          <h3>Impact măsurabil</h3>
+          <p>Reducem reconcilierile cu ~40% prin EDI, inventar >98% în WMS conectat, rapoarte executive în timp aproape real.</p>
+          <p class="tiny">Exemple ilustrative; detaliile exacte se stabilesc contractual.</p>
+        </div>
+        <div class="figure" role="img" aria-label="Vizual abstract despre date și integrare"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Hai să pornim</div>
+        <h2 id="contact-title" class="title">Intră în legătură</h2>
+        <p class="subtitle">Trimite-ne contextul pe e-mail sau folosește formularul din fereastra modală.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="card">
+          <h3>Date de contact</h3>
+          <p><strong>Adresă:</strong> STR. TRANSILVANIEI NR. 5 AP. 1, București</p>
+          <p><strong>E-mail:</strong> <a href="mailto:info@mlperpsolutions.pro" rel="nofollow">info@mlperpsolutions.pro</a></p>
+          <p class="tiny">Furnizează doar informații necesare pentru a-ți răspunde. Nu stocăm date mai mult decât este necesar.</p>
+          <button class="cta form-btn" id="openContact3" aria-haspopup="dialog" aria-controls="contactModal">Deschide formularul</button>
+        </div>
+
+        <div class="card">
+          <h3>Întrebări frecvente</h3>
+          <ul class="list">
+            <li>Proiect pilot: 6–10 săpt.</li>
+            <li>Compatibil cu SAP, D365, Odoo, NetSuite, API-uri custom.</li>
+            <li>Livrare incrementală cu obiective măsurabile pe sprint.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="container foot">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span><span>MLP ERP SOLUTIONS</span>
+      </div>
+      <div>© <span id="year"></span> MLP ERP SOLUTIONS SRL · Fără cookie-uri · Conținut informativ.</div>
+    </div>
+  </footer>
+
+  <!-- CONTACT MODAL -->
+  <div class="modal-backdrop" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal" role="document">
+      <header>
+        <h3 id="modal-title">Spune-ne câteva detalii</h3>
+        <button class="close" data-close aria-label="Închide fereastra de contact">Închide</button>
+      </header>
+
+      <!-- Блок ошибок (кастомный, вместо alert) -->
+      <div id="formErrors" class="error-box" role="alert" aria-live="assertive">
+        <strong>Te rugăm să corectezi următoarele:</strong>
+        <ul></ul>
+      </div>
+
+      <form id="contactForm" novalidate aria-describedby="form-help">
+        <p id="form-help" class="helper">
+          Nu solicităm număr de telefon. Prin trimitere, adresa de e-mail va fi folosită doar pentru a răspunde solicitării tale.
+        </p>
+
+        <div class="inline">
+          <div>
+            <label for="nume">Nume și prenume</label>
+            <input type="text" id="nume" name="nume" autocomplete="name" placeholder="Ex: Ioana Marinescu" required aria-required="true" />
+          </div>
+          <div>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="Ex: ioana@firma.ro" required aria-required="true" />
+          </div>
+        </div>
+
+        <label for="companie">Companie (opțional)</label>
+        <input type="text" id="companie" name="companie" placeholder="Ex: Danubius Trading SRL" />
+
+        <label for="mesaj">Mesaj</label>
+        <textarea id="mesaj" name="mesaj" placeholder="Contextul proiectului, sistemele existente, obiectivul principal..." required aria-required="true"></textarea>
+
+        <div class="inline" style="margin-top:10px">
+          <div class="helper">Răspundem în 1–2 zile lucrătoare.</div>
+          <div style="text-align:right">
+            <button class="cta" type="submit" aria-label="Trimite mesajul">Trimite</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal-backdrop" id="successModal" role="alertdialog" aria-modal="true" aria-labelledby="success-title" aria-hidden="true">
+    <div class="modal" role="document">
+      <header>
+        <h3 id="success-title">Mesaj trimis</h3>
+        <button class="close" data-close aria-label="Închide notificarea">Închide</button>
+      </header>
+      <div class="ok-box" aria-live="polite">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/></svg>
+        <span>Îți mulțumim! Solicitarea a fost înregistrată. Vom reveni pe e-mailul indicat.</span>
+      </div>
+      <div style="text-align:right; margin-top:14px">
+        <button class="cta" data-close aria-label="Închide">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Helpers: open/close modals
+    const contactModal = document.getElementById('contactModal');
+    const successModal = document.getElementById('successModal');
+    const openers = [document.getElementById('openContact'), document.getElementById('openContact2'), document.getElementById('openContact3')].filter(Boolean);
+
+    const showModal = (el) => {
+      el.style.display = 'flex';
+      el.removeAttribute('aria-hidden');
+      const focusable = el.querySelector('button.close, button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+      if (focusable) focusable.focus();
+      document.body.setAttribute('data-lock','1');
+    };
+    const hideModal = (el) => {
+      el.style.display = 'none';
+      el.setAttribute('aria-hidden','true');
+      document.body.removeAttribute('data-lock');
+    };
+
+    openers.forEach(btn => btn.addEventListener('click', () => showModal(contactModal)));
+    document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', (e) => hideModal(e.target.closest('.modal-backdrop'))));
+
+    [contactModal, successModal].forEach(modal => {
+      modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(modal); });
+      modal.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideModal(modal); });
+    });
+
+    // Validation + custom error box + custom success modal
+    const form = document.getElementById('contactForm');
+    const errorBox = document.getElementById('formErrors');
+    const errorList = errorBox.querySelector('ul');
+
+    const showErrors = (messages) => {
+      errorList.innerHTML = '';
+      messages.forEach(msg => {
+        const li = document.createElement('li');
+        li.textContent = msg;
+        errorList.appendChild(li);
+      });
+      errorBox.style.display = 'block';
+      errorBox.focus?.();
+    };
+
+    const clearErrors = () => {
+      errorList.innerHTML = '';
+      errorBox.style.display = 'none';
+    };
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearErrors();
+
+      const email = form.email.value.trim();
+      const nume  = form.nume.value.trim();
+      const mesaj = form.mesaj.value.trim();
+      const errors = [];
+
+      if (!nume) errors.push('Completează numele și prenumele.');
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Adresa de e-mail nu este validă.');
+      if (mesaj.length < 20) errors.push('Mesajul trebuie să aibă cel puțin 20 de caractere.');
+
+      if (errors.length){
+        showErrors(errors);
+        return;
+      }
+
+      // aici ar fi integrarea reală cu backend (fetch/POST). Simulăm succesul:
+      // await fetch('/api/contact', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({...}) });
+
+      hideModal(contactModal);
+      showModal(successModal);
+      form.reset();
+    });
+
+    // Active link on scroll
+    const links = document.querySelectorAll('.nav-links a');
+    const sections = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const onScroll = () => {
+      const y = window.scrollY + 120;
+      let current = null;
+      sections.forEach(sec => { if (y >= sec.offsetTop) current = sec.id; });
+      links.forEach(a => { a.style.background = (a.getAttribute('href') === '#' + current) ? 'var(--accent)' : 'transparent'; });
+    };
+    document.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  </script>
+</body>
+</html>
